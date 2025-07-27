@@ -18,7 +18,6 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.mangobanaani;
 
 import java.util.*;
 
@@ -37,6 +36,11 @@ public class RDPsimplifier implements Simplifier{
      */
     @Override
     public List<Point> reduce(List<Point> points, double epsilon)  {
+        // Handle edge cases
+        if (points == null || points.size() <= 2) {
+            return new ArrayList<>(points != null ? points : new ArrayList<Point>());
+        }
+        
         double furthestPointDistance = 0.0; // distance to furthest point from start
         int furthestPointIndex = 0;         // index of furthest point
         Point first=points.get(0);          // first point in list, fetch

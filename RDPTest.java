@@ -18,7 +18,6 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.mangobanaani;
 
 import java.util.*;
 import java.io.*;
@@ -31,7 +30,7 @@ import java.io.*;
  */
 public class RDPTest {
     private static List<Point> readFile(String filename){
-        List ll=new LinkedList();
+        List<Point> ll=new LinkedList<Point>();
         Point p;
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
@@ -72,13 +71,13 @@ public class RDPTest {
         
         Double epsilon=Double.parseDouble(args[1].trim()); // epsilon value to be used
         
-        List ll=readFile(args[0].trim()); // list to hold the objects
+        List<Point> ll=readFile(args[0].trim()); // list to hold the objects
         
         
         // print out points before start
         
         System.out.println("points in: ");
-        Iterator itr=ll.iterator();             // iterate throught the list
+        Iterator<Point> itr=ll.iterator();             // iterate throught the list
         while(itr.hasNext()){                   // and print it out
             System.out.print(itr.next().toString());
         }

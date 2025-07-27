@@ -18,7 +18,6 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.mangobanaani;
 
 import java.util.*;
 
@@ -63,15 +62,23 @@ public final class Line {
         this.setLength(Math.sqrt(dx*dx + dy*dy));
     }
 
-    public List asList() { // wrapper, return this object as java.util.List
+    public List<Point> asList() { // wrapper, return this object as java.util.List
         return Arrays.asList(getStart(), getEnd());
     }
     
     // distance is from furthest point to beginning point and endpoint divided by dist between start and end 
     double distance(Point p) {
         try{ 
+            if (getLength() == 0.0) {
+                // If start and end points are the same, return distance to that point
+                double dx = p.getX() - start.getX();
+                double dy = p.getY() - start.getY();
+                return Math.sqrt(dx*dx + dy*dy);
+            }
             return Math.abs(getDy() * p.getX() - getDx() * p.getY() + getSxey() - getExsy()) / getLength();
-        }catch(Exception e){System.out.println(e.getLocalizedMessage());}
+        }catch(Exception e){
+            System.out.println("Error calculating distance: " + e.getLocalizedMessage());
+        }
         return 0.0;
     }
 
